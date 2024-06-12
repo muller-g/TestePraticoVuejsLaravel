@@ -1,22 +1,22 @@
 <template>
     <div class="wrapper">
         <input type="text" placeholder="Nova tarefa" v-model="text"/>
-        <button :class="buttonClass" @click="handleClick">+</button>
+        <button @click="handleClick">+</button>
     </div>
 </template>
   
 <script>
   export default {
     name: 'NewTask',
-    computed: {
-      buttonClass() {
-        return `btn btn-${this.variant}`;
-      }
+    data() {
+      return {
+        text: ''
+      };
     },
     methods: {
-      handleClick(event) {
-        alert(this.text)
-        this.$emit('click', event);
+      async handleClick(event) {
+        this.$emit('task-added', this.text);
+        this.text = '';
       }
     }
   };
@@ -30,13 +30,13 @@
     }
 
     .wrapper input {
-        width: 100%;
-        outline: none;
-        border: 0px;
-        border-bottom: 1px solid black;
-        background-color: unset;
-        font-size: 14px;
-        padding: 5px;
+      width: 100%;
+      outline: none;
+      border: 0px;
+      border-bottom: 1px solid black;
+      background-color: unset;
+      font-size: 14px;
+      padding: 5px;
     }
 
     .wrapper button {

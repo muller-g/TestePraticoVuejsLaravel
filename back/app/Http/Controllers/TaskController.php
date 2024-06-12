@@ -25,9 +25,9 @@ class TaskController extends Controller
             'task' => 'required|string|max:256',
         ]);
         
-        Task::create($request->all());
+        $task = Task::create($request->all());
 
-        return response()->json(["message" => "Success"], 200);
+        return response()->json(["tasks" => $task], 200);
     }
 
     /**
@@ -44,7 +44,8 @@ class TaskController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'task' => 'required|string|max:256',
+            'task' => 'nullable|string|max:256',
+            'status' => 'nullable|boolean'
         ]);
 
         Task::findOrFail($id)->update($request->all());

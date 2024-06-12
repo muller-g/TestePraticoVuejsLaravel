@@ -15,3 +15,11 @@ A aplicação deve conter:
 [✅] Migrations
 
 [✅] Seed (se quiser incluir alguns dados já iniciados)
+
+
+## Comandos
+
+Para pré popular o banco de dados com algumas tarefas
+```
+ php artisan db:seed --class=TaskSeeder
+```
